@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController ()
 
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) NSArray *pauseItems;
 @property (strong, nonatomic) UIBarButtonItem *playBBI;
 @property (strong, nonatomic) UIBarButtonItem *pauseBBI;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 // Add properties here
 
@@ -30,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureBars];
+    [self configureAudioPlayer:@"DemoSong" withExtension:@"m4a"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -117,12 +120,12 @@
 - (void)playPause {
     if (_isPlaying) {
         // Pause audio here
-        
+        [_audioPlayer stop];
         [_toolBar setItems:_playItems];  // toggle play/pause button
     }
     else {
         // Play audio here
-
+        [_audioPlayer play];
         [_toolBar setItems:_pauseItems]; // toggle play/pause button
     }
     _isPlaying = !_isPlaying;
@@ -186,6 +189,18 @@
  */
 - (void)mediaPickerDidCancel:(MPMediaPickerController *) mediaPicker {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(void)configureAudioPlayer: (NSString *)filename withExtension:(NSString *)extension
+{
+    NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:filename withExtension:extension];
+    NSError *error;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileURL error:&error];
+    if (error)
+    {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+    [_audioPlayer setNumberOfLoops:-1];
 }
 
 @end

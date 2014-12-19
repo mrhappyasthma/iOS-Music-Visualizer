@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "VisualizerView.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface ViewController ()
@@ -19,8 +20,7 @@
 @property (strong, nonatomic) UIBarButtonItem *playBBI;
 @property (strong, nonatomic) UIBarButtonItem *pauseBBI;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-
-// Add properties here
+@property (strong, nonatomic) VisualizerView *visualizer;
 
 @end
 
@@ -33,7 +33,13 @@
     [super viewDidLoad];
     [self configureBars];
     [self configureAudioSession]; //Used to declare our playback (so we don't get muted when in the background)
-    [self configureAudioPlayer:@"DemoSong" withExtension:@"m4a"];
+    
+    //Create a visualizer view and add it to the screen
+    self.visualizer = [[VisualizerView alloc] initWithFrame:self.view.frame];
+    [_visualizer setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
+    [_backgroundView addSubview:_visualizer]; //_background view is a view layered behind the audio player view
+    
+    [self configureAudioPlayer:@"DemoSong" withExtension:@"m4a"]; //Set the default song and prepare playback
 }
 
 - (void)viewDidAppear:(BOOL)animated {

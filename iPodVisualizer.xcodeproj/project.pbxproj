@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B00C441F1A44D1AB00BF1714 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00C441E1A44D1AB00BF1714 /* AVFoundation.framework */; };
+		B0189A731A44E062000DAD38 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0189A721A44E062000DAD38 /* QuartzCore.framework */; };
+		B0189A791A44E0CB000DAD38 /* VisualizerView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0189A781A44E0CB000DAD38 /* VisualizerView.mm */; };
 		C11E4E8D17071E6400BCF699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11E4E8C17071E6400BCF699 /* UIKit.framework */; };
 		C11E4E8F17071E6400BCF699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11E4E8E17071E6400BCF699 /* Foundation.framework */; };
 		C11E4E9117071E6400BCF699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11E4E9017071E6400BCF699 /* CoreGraphics.framework */; };
@@ -26,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		B00C441E1A44D1AB00BF1714 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B0189A721A44E062000DAD38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B0189A771A44E0CB000DAD38 /* VisualizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VisualizerView.h; sourceTree = "<group>"; };
+		B0189A781A44E0CB000DAD38 /* VisualizerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VisualizerView.mm; sourceTree = "<group>"; };
 		C11E4E8917071E6400BCF699 /* iPodVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPodVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11E4E8C17071E6400BCF699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C11E4E8E17071E6400BCF699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0189A731A44E062000DAD38 /* QuartzCore.framework in Frameworks */,
 				B00C441F1A44D1AB00BF1714 /* AVFoundation.framework in Frameworks */,
 				C11E4EB417071FD200BCF699 /* MediaPlayer.framework in Frameworks */,
 				C11E4E8D17071E6400BCF699 /* UIKit.framework in Frameworks */,
@@ -85,6 +91,7 @@
 		C11E4E8B17071E6400BCF699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B0189A721A44E062000DAD38 /* QuartzCore.framework */,
 				B00C441E1A44D1AB00BF1714 /* AVFoundation.framework */,
 				C11E4E8C17071E6400BCF699 /* UIKit.framework */,
 				C11E4E8E17071E6400BCF699 /* Foundation.framework */,
@@ -102,6 +109,8 @@
 				C11E4E9C17071E6400BCF699 /* AppDelegate.m */,
 				C11E4EB017071F4800BCF699 /* ViewController.h */,
 				C11E4EB117071F4800BCF699 /* ViewController.m */,
+				B0189A771A44E0CB000DAD38 /* VisualizerView.h */,
+				B0189A781A44E0CB000DAD38 /* VisualizerView.mm */,
 				C11E4E9317071E6400BCF699 /* Supporting Files */,
 			);
 			path = iPodVisualizer;
@@ -208,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C11E4E9917071E6400BCF699 /* main.m in Sources */,
+				B0189A791A44E0CB000DAD38 /* VisualizerView.mm in Sources */,
 				C11E4E9D17071E6400BCF699 /* AppDelegate.m in Sources */,
 				C11E4EAF17071EFD00BCF699 /* MeterTable.cpp in Sources */,
 				C11E4EB217071F4800BCF699 /* ViewController.m in Sources */,

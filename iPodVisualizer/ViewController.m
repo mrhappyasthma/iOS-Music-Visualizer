@@ -32,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureBars];
+    [self configureAudioSession]; //Used to declare our playback (so we don't get muted when in the background)
     [self configureAudioPlayer:@"DemoSong" withExtension:@"m4a"];
 }
 
@@ -137,7 +138,7 @@
     }
 
     // Add audioPlayer configurations here
-    
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self playPause];   // Play 
 }
 
@@ -189,6 +190,18 @@
  */
 - (void)mediaPickerDidCancel:(MPMediaPickerController *) mediaPicker {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+//Establish audio session for music playback (as opposed to recording or processing)
+-(void)configureAudioSession
+{
+    NSError *error;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    
+    if(error)
+    {
+        NSLog(@"Error setting category: %@", [error description]);
+    }
 }
 
 -(void)configureAudioPlayer: (NSString *)filename withExtension:(NSString *)extension

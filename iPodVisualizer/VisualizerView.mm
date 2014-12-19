@@ -13,9 +13,11 @@
 
 #import "VisualizerView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MeterTable.h"
 
 @implementation VisualizerView {
     CAEmitterLayer *emitterLayer;
+    MeterTable meterTable;
 }
 
 //Overrides layerClass to return CAEmitterLayer, which allows this view to act as a particle emitter.
@@ -42,7 +44,17 @@
         //Creates a CAEmitterCell that renders particles using particleTexture.png, included in the starter project.
         CAEmitterCell *cell = [CAEmitterCell emitterCell];
         cell.name = @"cell";
-        cell.contents = (id)[[UIImage imageNamed:@"particleTexture.png"] CGImage];
+        
+        //Create children with a short lifetime for every frame refresh (about 1/60 secs)
+        CAEmitterCell *childCell = [CAEmitterCell emitterCell];
+        childCell.name = @"childCell";
+        childCell.lifetime = 1.0f / 60.0f;
+        childCell.birthRate = 60.0f;
+        childCell.velocity = 0.0f;
+        
+        childCell.contents = (id)[[UIImage imageNamed:@"particleTexture.png"] CGImage];
+        
+        cell.emitterCells = @[childCell];
         
         //Sets the particle color, along with a range by which each of the red, green, and blue color components may vary.
         cell.color = [[UIColor colorWithRed:1.0f green:0.53f blue:0.0f alpha:0.8f] CGColor];
@@ -73,8 +85,39 @@
         
         //Adds the emitter cell to the emitter layer.
         emitterLayer.emitterCells = @[cell];
+        
+        //Create a display link (updates at the rate of the screen - usually around 1 sec / 60 frames)
+        // Note:  This is related to threading.  For the scope of this tutorial, read more elsewhere: https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html
+        CADisplayLink *dpLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+        [dpLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     }
     return self;
+}
+
+- (void)update
+{
+    //You set scale to a default value of 0.5 and then check to see whether or not _audioPlayer is playing.
+    float scale = 0.5;
+    
+    if (_audioPlayer.playing )
+    {
+        //If it is playing, you call updateMeters on _audioPlayer, which refreshes the AVAudioPlayer data based on the current audio.
+        [_audioPlayer updateMeters];
+        
+        //Calculate the average decible level (power) over all channels (i.e. stereo = 2)
+        float power = 0.0f;
+        for (int i = 0; i < [_audioPlayer numberOfChannels]; i++) {
+            power += [_audioPlayer averagePowerForChannel:i];
+        }
+        power /= [_audioPlayer numberOfChannels];
+        
+        //Calculate the meterTable value and scale it by 5 (to accenuate the scale)
+        float level = meterTable.ValueAt(power); //We use meterTable to return a nice value from 0 to 1.  Instead of the complex decible values of -160-0 returned from the encapsulated methods
+        scale = level * 5;
+    }
+    
+    //Finally, the scale of the emitter’s particles is set to the new scale value. (If _audioPlayer was not playing, this will be the default scale of 0.5; otherwise, it will be some value based on the current audio levels.
+    [emitterLayer setValue:@(scale) forKeyPath:@"emitterCells.cell.emitterCells.childCell.scale"];
 }
 
 @end

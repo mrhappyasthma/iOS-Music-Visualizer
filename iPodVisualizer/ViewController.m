@@ -220,6 +220,8 @@
         NSLog(@"%@", [error localizedDescription]);
     }
     [_audioPlayer setNumberOfLoops:-1];
+    [_audioPlayer setMeteringEnabled:YES];
+    [_visualizer setAudioPlayer:_audioPlayer];
 }
 
 @end

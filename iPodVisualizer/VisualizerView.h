@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface VisualizerView : UIView
+
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer; //Gives the visualizer access to the audio player
 
 @end

@@ -46,7 +46,10 @@ Copyright (C) 2009 Apple Inc. All Rights Reserved.
 
  
 */
- 
+
+#ifndef METERTABLE_H
+#define METERTABLE_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -77,3 +80,5 @@ private:
 	float	mScaleFactor;
 	float	*mTable;
 };
+
+#endif

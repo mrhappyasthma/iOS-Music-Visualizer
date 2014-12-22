@@ -146,6 +146,7 @@
     [alert show];
 #else
     MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
+    picker.showsCloudItems = NO;
     [picker setDelegate:self];
     [picker setAllowsPickingMultipleItems: NO];
     [self presentViewController:picker animated:YES completion:NULL];

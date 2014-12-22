@@ -12,6 +12,7 @@
 //        You can read more about the particle emitter here: http://www.raywenderlich.com/6063/uikit-particle-systems-in-ios-5-tutorial
 
 #import "VisualizerView.h"
+#import "MeterTable.h"
 
 @implementation VisualizerView {
     CAEmitterLayer *emitterLayer;

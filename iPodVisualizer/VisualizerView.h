@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "MeterTable.h"
 
 @interface VisualizerView : UIView
 

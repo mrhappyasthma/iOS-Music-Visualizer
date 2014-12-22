@@ -7,22 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "VisualizerView.h"
-#import <AVFoundation/AVFoundation.h>
-
-@interface ViewController ()
-
-@property (strong, nonatomic) UIView *backgroundView;
-@property (strong, nonatomic) UINavigationBar *navBar;
-@property (strong, nonatomic) UIToolbar *toolBar;
-@property (strong, nonatomic) NSArray *playItems;
-@property (strong, nonatomic) NSArray *pauseItems;
-@property (strong, nonatomic) UIBarButtonItem *playBBI;
-@property (strong, nonatomic) UIBarButtonItem *pauseBBI;
-@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
-@property (strong, nonatomic) VisualizerView *visualizer;
-
-@end
 
 @implementation ViewController {
     BOOL _isBarHide;

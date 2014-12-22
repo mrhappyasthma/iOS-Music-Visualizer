@@ -177,6 +177,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Xinrong Guo";
+				TargetAttributes = {
+					C11E4E8817071E6400BCF699 = {
+						DevelopmentTeam = BD44R77MEQ;
+					};
+				};
 			};
 			buildConfigurationList = C11E4E8417071E6400BCF699 /* Build configuration list for PBXProject "iPodVisualizer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -297,10 +302,13 @@
 		C11E4EA717071E6400BCF699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPodVisualizer/iPodVisualizer-Prefix.pch";
 				INFOPLIST_FILE = "iPodVisualizer/iPodVisualizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -308,10 +316,13 @@
 		C11E4EA817071E6400BCF699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPodVisualizer/iPodVisualizer-Prefix.pch";
 				INFOPLIST_FILE = "iPodVisualizer/iPodVisualizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

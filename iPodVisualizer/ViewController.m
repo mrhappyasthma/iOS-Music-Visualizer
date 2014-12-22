@@ -145,6 +145,7 @@
 
     // Add audioPlayer configurations here
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    [self configureAudioPlayer];
     [self playPause];   // Play 
 }
 
@@ -210,6 +211,13 @@
     }
 }
 
+-(void)configureAudioPlayer
+{
+    [_audioPlayer setNumberOfLoops:-1];
+    [_audioPlayer setMeteringEnabled:YES];
+    [_visualizer setAudioPlayer:_audioPlayer];
+}
+
 -(void)configureAudioPlayer: (NSString *)filename withExtension:(NSString *)extension
 {
     NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:filename withExtension:extension];
@@ -219,9 +227,7 @@
     {
         NSLog(@"%@", [error localizedDescription]);
     }
-    [_audioPlayer setNumberOfLoops:-1];
-    [_audioPlayer setMeteringEnabled:YES];
-    [_visualizer setAudioPlayer:_audioPlayer];
+    [self configureAudioPlayer];
 }
 
 @end
